@@ -1,5 +1,6 @@
 import 'package:example/task.dart';
 import 'package:floor/floor.dart';
+import 'package:floor_annotation/floor_annotation.dart';
 
 @dao
 abstract class TaskDao {

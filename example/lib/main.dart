@@ -8,7 +8,7 @@ Future<void> main() async {
 
   final database = await $FloorFlutterDatabase
       .databaseBuilder('flutter_database.db')
-      .build();
+      .build('');
   final dao = database.taskDao;
 
   runApp(FloorApp(dao));

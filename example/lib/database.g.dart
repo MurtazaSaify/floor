@@ -42,13 +42,14 @@ class _$FlutterDatabaseBuilder {
   }
 
   /// Creates the database and initializes it.
-  Future<FlutterDatabase> build() async {
+  Future<FlutterDatabase> build(String password) async {
     final path = name != null
         ? await sqfliteDatabaseFactory.getDatabasePath(name!)
         : ':memory:';
     final database = _$FlutterDatabase();
     database.database = await database.open(
       path,
+      password,
       _migrations,
       _callback,
     );
@@ -63,7 +64,8 @@ class _$FlutterDatabase extends FlutterDatabase {
 
   TaskDao? _taskDaoInstance;
 
-  Future<sqflite.Database> open(String path, List<Migration> migrations,
+  Future<sqflite.Database> open(
+      String path, String password, List<Migration> migrations,
       [Callback? callback]) async {
     final databaseOptions = sqflite.OpenDatabaseOptions(
       version: 1,
@@ -87,7 +89,14 @@ class _$FlutterDatabase extends FlutterDatabase {
         await callback?.onCreate?.call(database, version);
       },
     );
-    return sqfliteDatabaseFactory.openDatabase(path, options: databaseOptions);
+    return sqflite.openDatabase(path,
+        version: 1,
+        onConfigure: databaseOptions.onConfigure,
+        onCreate: databaseOptions.onCreate,
+        onUpgrade: databaseOptions.onUpgrade,
+        onDowngrade: databaseOptions.onDowngrade,
+        onOpen: databaseOptions.onOpen,
+        password: password);
   }
 
   @override

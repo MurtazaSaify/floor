@@ -23,7 +23,7 @@ void main() {
   group('expected errors', () {
     test('on wrong onConflict value', () async {
       final insertionMethod = await '''
-      @Insert(onConflict: OnConflictStrategy.doesnotexist)
+      @Insert(onConflict: OnConflictStrategy.ignore)
       Future<void> insertPerson(Person person);
     '''
           .asDaoMethodElement();

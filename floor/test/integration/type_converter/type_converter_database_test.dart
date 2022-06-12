@@ -9,7 +9,7 @@ void main() {
   late OrderDao orderDao;
 
   setUp(() async {
-    database = await $FloorOrderDatabase.inMemoryDatabaseBuilder().build();
+    database = await $FloorOrderDatabase.inMemoryDatabaseBuilder().build('');
     orderDao = database.orderDao;
   });
 

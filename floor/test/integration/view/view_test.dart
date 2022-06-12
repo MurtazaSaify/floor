@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:floor/floor.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:sqflite/sqflite.dart' as sqflite;
+import 'package:sqflite_sqlcipher/sqflite.dart' as sqflite;
 
 import '../dao/dog_dao.dart';
 import '../dao/name_dao.dart';
@@ -35,7 +35,7 @@ void main() {
     late NameDao nameDao;
 
     setUp(() async {
-      database = await $FloorViewTestDatabase.inMemoryDatabaseBuilder().build();
+      database = await $FloorViewTestDatabase.inMemoryDatabaseBuilder().build('');
 
       personDao = database.personDao;
       dogDao = database.dogDao;

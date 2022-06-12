@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:floor/floor.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:sqflite/sqflite.dart' as sqflite;
+import 'package:sqflite_sqlcipher/sqflite.dart' as sqflite;
 
 part 'bool_test.g.dart';
 
@@ -12,7 +12,7 @@ void main() {
     late BoolDao boolDao;
 
     setUp(() async {
-      database = await $FloorTestDatabase.inMemoryDatabaseBuilder().build();
+      database = await $FloorTestDatabase.inMemoryDatabaseBuilder().build('');
       boolDao = database.boolDao;
     });
 

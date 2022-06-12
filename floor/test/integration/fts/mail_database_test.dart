@@ -18,7 +18,7 @@ void main() {
     late MailDao mailDao;
 
     setUp(() async {
-      mailDatabase = await $FloorMailDatabase.inMemoryDatabaseBuilder().build();
+      mailDatabase = await $FloorMailDatabase.inMemoryDatabaseBuilder().build('');
       mailDao = mailDatabase.mailDao;
     });
 

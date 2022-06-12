@@ -22,7 +22,7 @@ void main() {
   group('expected errors', () {
     test('on wrong onConflict value', () async {
       final updateMethod = await '''
-      @Update(onConflict: OnConflictStrategy.doesnotexist)
+      @Update(onConflict: OnConflictStrategy.ignore)
       Future<void> updatePerson(Person person);
    '''
           .asDaoMethodElement();

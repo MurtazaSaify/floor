@@ -60,6 +60,10 @@ class DatabaseBuilderWriter extends Writer {
       ..name = 'build'
       ..modifier = MethodModifier.async
       ..docs.add('/// Creates the database and initializes it.')
+      ..requiredParameters.add(Parameter((builder) => builder
+        ..name = 'password'
+        ..type = refer('String')
+      ))
       ..body = Code('''
         final path = name != null
           ? await sqfliteDatabaseFactory.getDatabasePath(name!)
@@ -67,6 +71,7 @@ class DatabaseBuilderWriter extends Writer {
         final database = _\$$_databaseName();
         database.database = await database.open(
           path,
+          password,
           _migrations,
           _callback,
         );

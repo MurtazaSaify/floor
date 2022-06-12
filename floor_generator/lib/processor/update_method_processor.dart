@@ -66,6 +66,7 @@ class UpdateMethodProcessor implements Processor<UpdateMethod> {
         ?.toEnumValueString();
 
     if (onConflictStrategy == null) {
+      return 'OnConflictStrategy.abort';
       throw _errors.wrongOnConflictValue;
     } else {
       return onConflictStrategy;
