@@ -12,7 +12,7 @@ void main() {
     late PersonDao personDao;
 
     setUp(() async {
-      database = await $FloorTestDatabase.inMemoryDatabaseBuilder().build();
+      database = await $FloorTestDatabase.inMemoryDatabaseBuilder().build('');
       personDao = database.personDao;
     });
 
